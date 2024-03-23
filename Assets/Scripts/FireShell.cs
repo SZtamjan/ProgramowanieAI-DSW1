@@ -13,19 +13,20 @@ public class FireShell : MonoBehaviour {
 
     void CreateBullet() {
 
-        Instantiate(bullet, turret.transform.position, turret.transform.rotation);
+        GameObject currentBullet = Instantiate(bullet, turret.transform.position, turret.transform.rotation);
+        currentBullet.GetComponent<ShellParabole>().SetTargetAndStartFlying(enemy.transform.position);
     }
 
     void Update() {
 
         if (elapsedTime > shootCooldown)
         {
-            Vector3 aimAt = CalculateTrajectory();
-            if (aimAt != Vector3.zero) {
+            //Vector3 aimAt = CalculateTrajectory();
+            //if (aimAt != Vector3.zero) {
 
-                this.transform.forward = CalculateTrajectory();
+                //this.transform.forward = CalculateTrajectory();
                 CreateBullet();
-            }
+            //}
 
             elapsedTime = 0f;
         }
