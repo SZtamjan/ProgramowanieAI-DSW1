@@ -177,7 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee017b9d71a1ba047a308f6d2bffa342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 620903246}
+  player: {fileID: 620903250}
+  maxCloseup: 3
   moveSpeed: 5
 --- !u!1 &620903246 stripped
 GameObject:
@@ -222,6 +223,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 1.6600001, z: 1.5999465}
   m_Center: {x: 6.398703e-16, y: 0.87, z: -0.17002684}
+--- !u!4 &620903250 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4044306032032135933, guid: f8df63ccbdfa54d54833de3ea7e2ce5a, type: 3}
+  m_PrefabInstance: {fileID: 3052892970279238296}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

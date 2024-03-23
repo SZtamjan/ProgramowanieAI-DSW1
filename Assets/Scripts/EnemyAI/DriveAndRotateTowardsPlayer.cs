@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DriveAndRotateTowardsPlayer : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private Transform player;
     [SerializeField] private float maxCloseup = 3f;
     [SerializeField] private float moveSpeed = 1f;
 
@@ -25,25 +25,28 @@ public class DriveAndRotateTowardsPlayer : MonoBehaviour
 
     private void RotateTowards()
     {
-        Vector3 forwardVector = transform.forward;
-        Vector3 playerVector = player.transform.position - transform.position;
+        Vector3 playerPos = player.position;
+        Vector3 myPos = transform.position;
         
-        float vectorMagnitudeToPlayer = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - transform.position.x, 2) + Mathf.Pow(player.transform.position.z - transform.position.z, 2));
-        float vectorMagnitudeToForward = Mathf.Sqrt(Mathf.Pow(transform.forward.x, 2) + Mathf.Pow(transform.forward.z, 2));
+        Vector3 forwardVector = transform.forward;
+        Vector3 playerVector = playerPos - myPos;
+        
+        float vectorMagnitudeToPlayer = Mathf.Sqrt(Mathf.Pow(playerPos.x - myPos.x, 2) + Mathf.Pow(playerPos.z - myPos.z, 2));
+        float vectorMagnitudeToForward = Mathf.Sqrt(Mathf.Pow(forwardVector.x, 2) + Mathf.Pow(forwardVector.z, 2));
 
         float angle = Mathf.Acos((forwardVector.x * playerVector.x + forwardVector.z * playerVector.z) / (vectorMagnitudeToPlayer * vectorMagnitudeToForward));
 
-        var cross = new Vector3(forwardVector.y * playerVector.z - forwardVector.z * playerVector.y, 
+        var crossProd = new Vector3(forwardVector.y * playerVector.z - forwardVector.z * playerVector.y, 
             forwardVector.x * playerVector.z - forwardVector.z * playerVector.x, 
             forwardVector.x * playerVector.y - forwardVector.y * playerVector.x);
 
         int clockwise = 1;
-        if (cross.y > 0) clockwise = -1;
+        if (crossProd.y > 0) clockwise = -1;
         
         if (!float.IsNaN(angle)) transform.Rotate(0,angle * Mathf.Rad2Deg * clockwise,0);
     }
 
-    public GameObject GetPlayer()
+    public Transform GetPlayer()
     {
         return player;
     }
