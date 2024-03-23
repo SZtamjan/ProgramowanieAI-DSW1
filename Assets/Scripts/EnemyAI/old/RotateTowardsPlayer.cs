@@ -9,7 +9,7 @@ public class RotateTowardsPlayer : MonoBehaviour
     //[SerializeField] private Transform rotatablePart;
     private void Start()
     {
-        player = GetComponent<DriveTowardsPlayer>().GetPlayer().transform;
+        player = GetComponent<DriveAndRotateTowardsPlayer>().GetPlayer().transform;
     }
 
     private void Update()
